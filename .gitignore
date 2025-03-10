@@ -1,0 +1,7 @@
+*.o
+*.elf
+*.hex
+*.map
+*.dis
+*.dep
+python/__pycache__

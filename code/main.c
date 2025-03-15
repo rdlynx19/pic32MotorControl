@@ -366,6 +366,7 @@ int main()
 
 		case 'g':
 		{
+			// set current gains
 			NU32DIP_ReadUART1(buffer, BUF_SIZE);
 			sscanf(buffer, "%f %f", &Kp_mA, &Ki_mA);
 			break;
@@ -373,13 +374,15 @@ int main()
 
 		case 'h':
 		{
+			// read current gains
 			sprintf(buffer, "Kp: %f, Ki: %f\r\n", Kp_mA, Ki_mA);
 			NU32DIP_WriteUART1(buffer);
 			break;
 		}
 
 		case 'i':
-		{	
+		{
+			// set position gains	
 			NU32DIP_ReadUART1(buffer, BUF_SIZE);
 			sscanf(buffer, "%f %f %f", &Kp_pos, &Ki_pos, &Kd_pos);
 			break;
@@ -387,6 +390,7 @@ int main()
 		
 		case 'j':
 		{
+			// read position gains
 			sprintf(buffer, "Kp: %f, Ki: %f, Kd: %f\r\n", Kp_pos, Ki_pos, Kd_pos);
 			NU32DIP_WriteUART1(buffer);
 			break;
@@ -394,6 +398,7 @@ int main()
 
 		case 'k':
 		{
+			// ITEST Tracking test
 			set_mode(ITEST);
 			enum mode_t currentMode = get_mode();
 			while (currentMode != IDLE)
@@ -415,6 +420,7 @@ int main()
 
 		case 'l':
 		{
+			// go to desired position
 			NU32DIP_ReadUART1(buffer, BUF_SIZE);
 			sscanf(buffer, "%f", &desiredAngle);
 			set_mode(HOLD);
@@ -438,6 +444,7 @@ int main()
 		
 		case 'm':
 		{
+			// step trajectory
 			int index = 0;
 			NU32DIP_ReadUART1(buffer, BUF_SIZE);
 			sscanf(buffer, "%d", &trajectorySize);
@@ -451,6 +458,7 @@ int main()
 
 		case 'n':
 		{
+			// cubic trajectory
 			int index = 0;
 			NU32DIP_ReadUART1(buffer, BUF_SIZE);
 			sscanf(buffer, "%d", &trajectorySize);
@@ -463,6 +471,7 @@ int main()
 
 		case 'o':
 		{
+			// start trajectory tracking
 			set_mode(TRACK);
 			enum mode_t currentMode = get_mode();
 			while(currentMode != HOLD){
